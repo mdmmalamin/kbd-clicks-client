@@ -8,7 +8,9 @@ const NavbarContainer = () => {
     <nav className="bg-kbd-primary py-2.5">
       <Container className="flex items-center justify-between">
         <NavbarLogo />
+
         <NavbarMenu />
+
         <NavbarCart />
       </Container>
     </nav>

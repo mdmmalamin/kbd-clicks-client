@@ -12,7 +12,7 @@ const BrandCard = ({ src, title, link }: TBrandProps) => {
     <Link to={link!} target="_blank">
       <div className="size-80 bg-kbd-secondary/10">
         <img
-          className="size-80 object-scale-down object-center p-6"
+          className="size-80 object-scale-down object-center p-6 hover:scale-75 transition duration-300"
           src={src || logo}
           alt={`${title} brand logo`}
         />

@@ -1,7 +1,9 @@
+import HeadLine from "../ui/HeadLine";
+
 const FeaturedProductsContainer = () => {
   return (
     <div>
-      <h1>Featured Products Container</h1>
+      <HeadLine>Featured Products Container</HeadLine>
     </div>
   );
 };

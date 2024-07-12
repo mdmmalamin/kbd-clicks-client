@@ -15,7 +15,7 @@ const HeroContainer = () => {
           {/* <HeroImages /> */}
           <div className="flex flex-col gap-10 items-center justify-center bg-secondary-gradient w-full h-full rounded-2xl">
             <h1 className="text-7xl font-extrabold text-white">Theseus75</h1>
-            <Button className="bg-kbd-accent text-xl text-primary hover:bg-kbd-tertiary font-bold transition duration-300">Order Now</Button>
+            <Button className="bg-kbd-accent text-xl text-primary hover:bg-kbd-tertiary font-bold rounded-full p-6 transition duration-300">Order Now</Button>
           </div>
         </div>
       </Container>
