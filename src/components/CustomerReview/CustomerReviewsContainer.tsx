@@ -21,7 +21,7 @@ const CustomerReviewsContainer = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       nextSlider();
-    }, 3000);
+    }, 4000);
     return () => {
       clearInterval(intervalId);
     };
