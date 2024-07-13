@@ -1,8 +1,10 @@
+import ProductsPageContainer from "../components/ProductsPage/ProductsPageContainer";
+
 const Products = () => {
   return (
-    <div>
-      <h1>KBD Clicks - Products Page</h1>
-    </div>
+    <section className="space-y-24">
+      <ProductsPageContainer />
+    </section>
   );
 };
 

@@ -6,7 +6,6 @@ type TStarProps = {
 };
 
 const IFiveStar = ({ rating }: TStarProps) => {
-  console.log(rating);
   return (
     <div className="flex items-center">
       {[...Array(5 - rating)].map((el, idx) => {

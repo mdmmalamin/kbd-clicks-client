@@ -25,7 +25,7 @@ const FeaturedCard = ({
 TFeaturedCardProps) => {
   return (
     <div className="w-[360px] h-full p-5 mx-auto hover:scale-105 transition duration-300 rounded-2xl hover:bg-kbd-accent/20">
-      <div className="size-80 mx-auto rounded-2xl border-2 border-kbd-accent shadow-lg">
+      <div className="size-80 mx-auto rounded-[17px] border-2 border-kbd-accent shadow-lg">
         <img
           className="h-full w-full mx-auto rounded-2xl border-2 border-kbd-accent shadow-lg"
           src={img || keyboard}
@@ -45,13 +45,15 @@ TFeaturedCardProps) => {
           <p>
             {412.49 || price} {"$" || currency}
           </p>
-          <p className="text-xs">
-            Just{" "}
-            <span className="text-base font-semibold text-kbd-tertiary">
-              {14 || quantity}
-            </span>{" "}
-            remaining
-          </p>
+          {quantity && (
+            <p className="text-xs">
+              Just{" "}
+              <span className="text-base font-semibold text-kbd-tertiary">
+                {quantity}
+              </span>{" "}
+              remaining
+            </p>
+          )}
         </div>
         <div>
           <p className="line-clamp-1">

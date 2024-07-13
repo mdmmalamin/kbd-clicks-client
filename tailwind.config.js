@@ -80,10 +80,10 @@ module.exports = {
       backgroundImage: {
         "primary-gradient": "linear-gradient(30deg, #000000, #e4e4e7)",
         "secondary-gradient":
-          "linear-gradient(30deg, #000000dd, #616F3922,#000000dd)",
+          "linear-gradient(30deg, #000000dd, #616F3922, #000000dd)",
       },
       boxShadow: {
-        primary: "0 4px 12px rgba(167, 209, 41,0.3)",
+        "kbd-primary": "0 4px 12px rgba(254, 254, 254, 0.25)",
       },
     },
   },
