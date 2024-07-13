@@ -1,7 +1,9 @@
+import ProductDetailsPageContainer from "../components/productDetailsPage/ProductDetailsPageContainer";
+
 const ProductDetails = () => {
   return (
     <div>
-      <h1>KBD Clicks - Product Details Page</h1>
+      <ProductDetailsPageContainer />
     </div>
   );
 };
