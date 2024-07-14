@@ -1,9 +1,7 @@
-import { useState } from "react";
 import keyboard from "../../assets/images/hero/kbd-6.png";
-import IPlus from "../../assets/icons/IPlus";
-import IMinus from "../../assets/icons/IMinus";
-import { Button } from "../ui/button";
 import IFiveStar from "../../assets/icons/IFiveStar";
+import ButtonCart from "../ui/ButtonCart";
+import Counter from "../ui/Counter";
 
 type TProductDetailsProps = {
   id?: string;
@@ -20,7 +18,6 @@ type TProductDetailsProps = {
 };
 
 const ProductDetails = ({
-  id,
   img,
   title,
   brand,
@@ -28,13 +25,9 @@ const ProductDetails = ({
   unit,
   price,
   rating,
-  stock,
-  status,
+
   description,
 }: TProductDetailsProps) => {
-  const [count, setCount] = useState(1);
-  const result = count > 0 && count - 1;
-
   return (
     <section className="flex justify-between items-start my-12">
       <div className="flex-1">
@@ -58,27 +51,9 @@ const ProductDetails = ({
           </div>
 
           <div className="flex gap-6">
-            <div className="w-fit flex items-center gap-6 text-lg border rounded-md">
-              <button className="p-4 flex-1" onClick={() => setCount(result)}>
-                <IMinus />
-              </button>
-              <p className="flex-auto">{count || "1"}</p>
-              <button
-                className="p-4 flex-1"
-                onClick={() => setCount((prev) => prev + 1)}
-              >
-                <IPlus />
-              </button>
-            </div>
+            <Counter />
 
-            <div className="flex-auto">
-              <Button
-                disabled={quantity === 0}
-                className="w-full h-full bg-kbd-primary hover:bg-kbd-accent text-white hover:text-kbd-primary font-semibold transition duration-300"
-              >
-                {quantity === 0 ? "Stock Out" : "Add To Cart"}
-              </Button>
-            </div>
+            <ButtonCart quantity={quantity!} />
           </div>
 
           <div>
