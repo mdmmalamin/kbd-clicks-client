@@ -1,4 +1,5 @@
-import Input from "../form/Input";
+
+import Search from "../form/Search";
 import ButtonKbd from "../ui/ButtonKbd";
 
 const SearchProduct = () => {
@@ -7,7 +8,7 @@ const SearchProduct = () => {
       className="flex items-center gap-4 relative"
       // onSubmit={handleSubmit(handleSearch)}
     >
-      <Input
+      <Search
       // register={{
       //   ...register("search", { required: true, maxLength: 100 }),
       // }}
@@ -16,7 +17,7 @@ const SearchProduct = () => {
         <ButtonKbd />
       </span>
       <div>
-      A search bar to allow users to search for products by name, brand.
+        A search bar to allow users to search for products by name, brand.
       </div>
     </form>
   );

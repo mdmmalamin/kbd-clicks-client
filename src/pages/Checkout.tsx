@@ -1,7 +1,9 @@
+import CheckoutContainer from "../components/checkout/CheckoutContainer";
+
 const Checkout = () => {
   return (
     <div>
-      <h1>KBD Clicks - Checkout Page</h1>
+      <CheckoutContainer />
     </div>
   );
 };
