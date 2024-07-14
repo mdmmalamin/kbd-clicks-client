@@ -33,7 +33,7 @@ const ProductDetails = ({
   description,
 }: TProductDetailsProps) => {
   const [count, setCount] = useState(1);
-  const result = count >= 0 && count - 1;
+  const result = count > 0 && count - 1;
 
   return (
     <section className="flex justify-between items-start my-12">
