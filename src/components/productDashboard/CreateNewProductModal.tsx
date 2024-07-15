@@ -1,7 +1,6 @@
 import { Button } from "../ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -35,7 +34,10 @@ const CreateNewProductModal = () => {
         price: parseFloat(data?.price),
         rating: parseInt(data?.rating),
         status: data?.status,
+        img: data?.img,
       };
+
+      console.log(productInfo);
 
       await setProduct(productInfo);
 
@@ -84,7 +86,7 @@ const CreateNewProductModal = () => {
               Name
             </Label>
             <Input
-              placeholder="Full Name"
+              placeholder="Product Title"
               id="title"
               className="col-span-3"
               register={{
@@ -115,7 +117,6 @@ const CreateNewProductModal = () => {
             </Label>
             <Input
               placeholder="Price"
-              type="number"
               id="price"
               className="col-span-3"
               register={{
@@ -195,14 +196,12 @@ const CreateNewProductModal = () => {
             </select>
           </div>
           <DialogFooter>
-            <DialogClose asChild>
-              <Button
-                className="bg-kbd-accent hover:bg-kbd-tertiary text-kbd-primary hover:text-white"
-                type="submit"
-              >
-                Save changes
-              </Button>
-            </DialogClose>
+            <Button
+              className="bg-kbd-accent hover:bg-kbd-tertiary text-kbd-primary hover:text-white"
+              type="submit"
+            >
+              Add product
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

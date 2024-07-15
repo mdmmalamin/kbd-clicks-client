@@ -1,11 +1,11 @@
 import FeaturedProductsContainer from "../featuredProducts/FeaturedProductsContainer";
 import Container from "../ui/Container";
-import ProductDetails from "./ProductDetails";
+import SingleProductDetails from "./SingleProductDetails";
 
 const ProductDetailsPageContainer = () => {
   return (
     <Container>
-      <ProductDetails />
+      <SingleProductDetails />
 
       <hr className="my-24" />
 

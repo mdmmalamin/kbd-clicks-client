@@ -17,7 +17,6 @@ import ProductUpdateModal from "./ProductUpdateModal";
 
 const ProductsDashboardContainer = () => {
   const { data: products } = useGetProductsQuery(undefined);
-  console.log(products?.data);
 
   return (
     <Container>
@@ -33,7 +32,7 @@ const ProductsDashboardContainer = () => {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">Image</TableHead>
-              <TableHead className="">Name</TableHead>
+              <TableHead>Name</TableHead>
               <TableHead>Price</TableHead>
               <TableHead>Brand</TableHead>
               <TableHead className="text-right">Action</TableHead>
@@ -44,12 +43,12 @@ const ProductsDashboardContainer = () => {
               <TableRow key={product?.id || idx}>
                 <TableCell className="font-medium">
                   <img
-                    className="text-xs line-clamp-1"
+                    className="text-xs line-clamp-1 border"
                     src={product?.img}
                     alt={`${product?.title} image`}
                   />
                 </TableCell>
-                <TableCell className="font-medium line-clamp-1">
+                <TableCell className="font-medium">
                   {product?.title}
                 </TableCell>
                 <TableCell>{product?.price}</TableCell>
