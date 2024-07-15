@@ -73,6 +73,20 @@ const CreateNewProductModal = () => {
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="brand" className="text-right">
+              Brand
+            </Label>
+            <Input
+              id="brand"
+              className="col-span-3"
+              register={{
+                ...register("brand", {
+                  required: "Please enter item name.",
+                }),
+              }}
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="price" className="text-right">
               Price
             </Label>
