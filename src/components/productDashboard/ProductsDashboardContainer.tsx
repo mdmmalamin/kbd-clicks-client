@@ -1,3 +1,5 @@
+import { useGetProductsQuery } from "../../redux/features/product/productApi";
+import { TProduct } from "../../redux/features/product/productSlice";
 import Container from "../ui/Container";
 import HeadLine from "../ui/HeadLine";
 import {
@@ -14,22 +16,9 @@ import ProductDeleteModal from "./ProductDeleteModal";
 import ProductUpdateModal from "./ProductUpdateModal";
 
 const ProductsDashboardContainer = () => {
-  const products = [
-    {
-      id: 2344322,
-      img: "",
-      title: "Paasfggsfgsfgfgssgffsid",
-      price: "$250.00",
-      brand: "Credit Card",
-    },
-    {
-      id: 234466322,
-      img: "",
-      title: "Paasfggsfgsfgfgssgffsid",
-      price: "$250.00",
-      brand: "Credit Card",
-    },
-  ];
+  const { data: products } = useGetProductsQuery(undefined);
+  console.log(products?.data);
+
   return (
     <Container>
       <HeadLine>KBD Clicks - Products Dashboard Page</HeadLine>
@@ -51,20 +40,20 @@ const ProductsDashboardContainer = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {products.map((product) => (
-              <TableRow key={product.id}>
+            {products?.data?.map((product: TProduct, idx: number) => (
+              <TableRow key={product?.id || idx}>
                 <TableCell className="font-medium">
                   <img
                     className="text-xs line-clamp-1"
-                    src={product.img}
-                    alt={`${product.title} image`}
+                    src={product?.img}
+                    alt={`${product?.title} image`}
                   />
                 </TableCell>
                 <TableCell className="font-medium line-clamp-1">
-                  {product.title}
+                  {product?.title}
                 </TableCell>
-                <TableCell>{product.price}</TableCell>
-                <TableCell>{product.brand}</TableCell>
+                <TableCell>{product?.price}</TableCell>
+                <TableCell>{product?.brand}</TableCell>
                 <TableCell className="text-right">
                   <ProductUpdateModal />
                   <ProductDeleteModal />

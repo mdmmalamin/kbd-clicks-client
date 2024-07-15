@@ -1,6 +1,7 @@
 import { Button } from "../ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -13,16 +14,35 @@ import Label from "../form/Label";
 import IPlus from "../../assets/icons/IPlus";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { useCreateProductMutation } from "../../redux/features/product/productApi";
 
 const CreateNewProductModal = () => {
   const { register, handleSubmit } = useForm();
+  const [setProduct, { data, isLoading, isError, isSuccess }] =
+    useCreateProductMutation();
+
+  console.log({ data, isLoading, isError, isSuccess });
 
   const createProduct = async (data: FieldValues) => {
-    console.log(data);
     const toastId = toast.loading("New item create processing...");
 
     try {
-      console.log(data);
+      const productInfo = {
+        title: data?.title,
+        description: data?.description,
+        brand: data?.brand,
+        quantity: parseInt(data?.quantity),
+        price: parseFloat(data?.price),
+        rating: parseInt(data?.rating),
+        status: data?.status,
+      };
+
+      await setProduct(productInfo);
+
+      toast.success("Product create successfully.", {
+        id: toastId,
+        duration: 3000,
+      });
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong", { id: toastId, duration: 3000 });
@@ -49,6 +69,7 @@ const CreateNewProductModal = () => {
               Image
             </Label>
             <Input
+              placeholder="Image Link"
               id="img"
               className="col-span-3"
               register={{
@@ -63,6 +84,7 @@ const CreateNewProductModal = () => {
               Name
             </Label>
             <Input
+              placeholder="Full Name"
               id="title"
               className="col-span-3"
               register={{
@@ -77,6 +99,7 @@ const CreateNewProductModal = () => {
               Brand
             </Label>
             <Input
+              placeholder="Brand Name"
               id="brand"
               className="col-span-3"
               register={{
@@ -91,6 +114,7 @@ const CreateNewProductModal = () => {
               Price
             </Label>
             <Input
+              placeholder="Price"
               type="number"
               id="price"
               className="col-span-3"
@@ -106,6 +130,7 @@ const CreateNewProductModal = () => {
               Description
             </Label>
             <Input
+              placeholder="Description"
               id="description"
               className="col-span-3"
               register={{
@@ -120,6 +145,7 @@ const CreateNewProductModal = () => {
               Available quantity
             </Label>
             <Input
+              placeholder="Quantity"
               type="number"
               id="quantity"
               className="col-span-3"
@@ -135,23 +161,48 @@ const CreateNewProductModal = () => {
               Rating
             </Label>
             <Input
+              placeholder="Rating"
               type="number"
               id="rating"
-              className="col-span-3"
+              className="col-span-3 appearance-none"
               register={{
                 ...register("rating", {
                   required: "Please enter item rating.",
+                  max: 5,
+                  min: 0,
+                  maxLength: 1,
                 }),
               }}
             />
           </div>
-          <DialogFooter>
-            <Button
-              className="bg-kbd-accent hover:bg-kbd-tertiary text-kbd-primary hover:text-white"
-              type="submit"
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="status" className="text-right">
+              Status
+            </Label>
+            <select
+              id="status"
+              {...register("status", {
+                required: "Please select an payment option",
+              })}
+              className="col-span-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             >
-              Save changes
-            </Button>
+              <option value="" disabled>
+                Status options
+              </option>
+              <option value="in-stock">in-stock</option>
+              <option value="out-of-stock">out-of-stock</option>
+              <option value="discontinued">discontinued</option>
+            </select>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button
+                className="bg-kbd-accent hover:bg-kbd-tertiary text-kbd-primary hover:text-white"
+                type="submit"
+              >
+                Save changes
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </form>
       </DialogContent>
