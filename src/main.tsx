@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
-      <Toaster richColors />
+      <Toaster richColors position="top-right"/>
     </Provider>
   </React.StrictMode>
 );

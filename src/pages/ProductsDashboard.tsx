@@ -1,7 +1,9 @@
+import ProductsDashboardContainer from "../components/productDashboard/ProductsDashboardContainer";
+
 const ProductsDashboard = () => {
   return (
     <div>
-      <h1>KBD Clicks - Products Dashboard Page</h1>
+      <ProductsDashboardContainer />
     </div>
   );
 };
