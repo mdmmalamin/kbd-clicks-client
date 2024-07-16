@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export type TProduct = {
-  id?: string;
+  _id?: string;
   img: string;
   title: string;
   description: string;
@@ -10,6 +10,7 @@ export type TProduct = {
   price: number;
   rating: number;
   status: string;
+  isDeleted?: boolean;
 };
 
 const initialState = {

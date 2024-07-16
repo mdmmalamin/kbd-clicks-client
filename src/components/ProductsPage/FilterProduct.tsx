@@ -1,9 +1,32 @@
-const FilterProduct = () => {
+import { Button } from "../ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+
+const FilterProduct = ({ priority, setPriority }) => {
   return (
-    <div className="flex items-end gap-2.5">
-      <p>Filter: </p>
-      <h3 className="text-xl font-semibold">Filters for product price range.</h3>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button className="">
+          Filter
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>Filter by price</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuRadioGroup value={priority} onValueChange={setPriority}>
+          <DropdownMenuRadioItem value="high">High</DropdownMenuRadioItem>
+
+          <DropdownMenuRadioItem value="low">Low</DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

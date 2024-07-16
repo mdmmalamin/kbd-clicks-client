@@ -6,24 +6,27 @@ import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "../ui/table";
 import CreateNewProductModal from "./CreateNewProductModal";
-import ProductDeleteModal from "./ProductDeleteModal";
-import ProductUpdateModal from "./ProductUpdateModal";
+import ProductCard from "./ProductCard";
+import ProductDeleteItems from "./ProductDeleteItems";
 
 const ProductsDashboardContainer = () => {
   const { data: products } = useGetProductsQuery(undefined);
+  console.log(products);
 
   return (
     <Container>
-      <HeadLine>KBD Clicks - Products Dashboard Page</HeadLine>
+      <HeadLine className="my-12">
+        KBD Clicks - Products Dashboard Page
+      </HeadLine>
 
-      <section>
+      <section className="flex justify-between items-center">
         <CreateNewProductModal />
+        <ProductDeleteItems />
       </section>
 
       <section>
@@ -39,25 +42,8 @@ const ProductsDashboardContainer = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {products?.data?.map((product: TProduct, idx: number) => (
-              <TableRow key={product?.id || idx}>
-                <TableCell className="font-medium">
-                  <img
-                    className="text-xs line-clamp-1 border"
-                    src={product?.img}
-                    alt={`${product?.title} image`}
-                  />
-                </TableCell>
-                <TableCell className="font-medium">
-                  {product?.title}
-                </TableCell>
-                <TableCell>{product?.price}</TableCell>
-                <TableCell>{product?.brand}</TableCell>
-                <TableCell className="text-right">
-                  <ProductUpdateModal />
-                  <ProductDeleteModal />
-                </TableCell>
-              </TableRow>
+            {products?.data?.map((product: TProduct) => (
+              <ProductCard {...product} key={product?._id} />
             ))}
           </TableBody>
         </Table>

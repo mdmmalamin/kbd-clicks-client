@@ -12,6 +12,7 @@ export type TFeaturedCardProps = {
   currency?: string;
   img?: string;
   status?: "in-stock" | "out-of-stock";
+  isDeleted?: boolean;
 };
 
 const FeaturedCard = ({

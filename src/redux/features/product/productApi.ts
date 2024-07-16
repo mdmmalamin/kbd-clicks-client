@@ -11,11 +11,28 @@ const productApi = baseApi.injectEndpoints({
     }),
     getProducts: builder.query({
       query: () => ({
-        url: "/products",
+        url: "/products?isDeleted=false",
         method: "GET",
+      }),
+    }),
+    // getProductsByPriceRange: builder.query({
+    //   query: () => ({
+    //     url: "/products?sort=price",
+    //     method: "GET",
+    //   }),
+    // }),
+    deleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `/products/${id}`,
+        method: "DELETE",
       }),
     }),
   }),
 });
 
-export const { useCreateProductMutation, useGetProductsQuery } = productApi;
+export const {
+  useCreateProductMutation,
+  useGetProductsQuery,
+  useGetProductsByPriceRangeQuery,
+  useDeleteProductMutation,
+} = productApi;

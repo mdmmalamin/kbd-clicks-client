@@ -1,4 +1,5 @@
 import ITrash from "../../assets/icons/ITrash";
+import { useDeleteProductMutation } from "../../redux/features/product/productApi";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -11,7 +12,11 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 
-const ProductDeleteModal = () => {
+const ProductDeleteModal = ({ id }: { id?: string }) => {
+  const [deletedProduct, { data, isLoading, isError, isSuccess }] =
+    useDeleteProductMutation();
+
+  console.log({ data, isLoading, isError, isSuccess });
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -31,7 +36,11 @@ const ProductDeleteModal = () => {
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button className="bg-red-500 hover:bg-red-700" type="submit">
+            <Button
+              onClick={() => deletedProduct(id)}
+              className="bg-red-500 hover:bg-red-700"
+              type="submit"
+            >
               Delete
             </Button>
           </DialogClose>

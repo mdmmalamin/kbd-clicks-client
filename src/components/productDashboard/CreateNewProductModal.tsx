@@ -14,11 +14,13 @@ import IPlus from "../../assets/icons/IPlus";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useCreateProductMutation } from "../../redux/features/product/productApi";
+// import { useNavigate } from "react-router-dom";
 
 const CreateNewProductModal = () => {
   const { register, handleSubmit } = useForm();
   const [setProduct, { data, isLoading, isError, isSuccess }] =
     useCreateProductMutation();
+  // const navigate = useNavigate();
 
   console.log({ data, isLoading, isError, isSuccess });
 
@@ -45,6 +47,8 @@ const CreateNewProductModal = () => {
         id: toastId,
         duration: 3000,
       });
+
+      // navigate("/products");
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong", { id: toastId, duration: 3000 });
