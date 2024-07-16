@@ -5,7 +5,7 @@ import FeaturedCard, { TFeaturedCardProps } from "./FeaturedCard";
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
 
 const FeaturedProductsContainer = () => {
-  const { data: products } = useGetProductsQuery(undefined);
+  const { data: products } = useGetProductsQuery('');
   console.log(products?.data);
   return (
     <Container className="space-y-12">

@@ -9,21 +9,30 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-const FilterProduct = ({ priority, setPriority }) => {
+type TStateProps = {
+  priceRange: string;
+  setPriceRange: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const FilterProduct = ({ priceRange, setPriceRange }: TStateProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="">
-          Filter
-        </Button>
+        <Button className="">Filter</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Filter by price</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={priority} onValueChange={setPriority}>
-          <DropdownMenuRadioItem value="high">High</DropdownMenuRadioItem>
-
-          <DropdownMenuRadioItem value="low">Low</DropdownMenuRadioItem>
+        <DropdownMenuRadioGroup
+          value={priceRange}
+          onValueChange={setPriceRange}
+        >
+          <DropdownMenuRadioItem value="-price">
+            high to low
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="price">
+            low to high
+          </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

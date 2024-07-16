@@ -10,10 +10,22 @@ const productApi = baseApi.injectEndpoints({
       }),
     }),
     getProducts: builder.query({
-      query: () => ({
-        url: "/products?isDeleted=false",
-        method: "GET",
-      }),
+      query: (filter) => {
+        const { priceRange, search } = filter;
+
+        const params = new URLSearchParams();
+
+        params.append("isDeleted", "false");
+
+        priceRange && params.append("sort", priceRange);
+        search && params.append("searchTerm", search);
+
+        return {
+          url: `/products`,
+          method: "GET",
+          params: params,
+        };
+      },
     }),
     // getProductsByPriceRange: builder.query({
     //   query: () => ({
@@ -33,6 +45,6 @@ const productApi = baseApi.injectEndpoints({
 export const {
   useCreateProductMutation,
   useGetProductsQuery,
-  useGetProductsByPriceRangeQuery,
+  // useGetProductsByPriceRangeQuery,
   useDeleteProductMutation,
 } = productApi;
