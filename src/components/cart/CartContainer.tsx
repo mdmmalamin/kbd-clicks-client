@@ -20,6 +20,7 @@ const CartContainer = () => {
         {carts?.data?.map((cart: TCartProps) => (
           // console.log(cart?.productId?.img)
           <CartCard
+            _id={cart?._id}
             img={cart?.productId?.img}
             title={cart?.productId?.title}
             price={cart?.productId?.price}

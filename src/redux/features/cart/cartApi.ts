@@ -19,14 +19,14 @@ const cartApi = baseApi.injectEndpoints({
         params.append("isDeleted", "false");
 
         return {
-          url: `/carts`,
+          url: `/carts?isDeleted=false`,
           method: "GET",
           params: params,
         };
       },
     }),
 
-    deleteProduct: builder.mutation({
+    deleteCart: builder.mutation({
       query: (id) => ({
         url: `/carts/${id}`,
         method: "DELETE",
@@ -38,5 +38,5 @@ const cartApi = baseApi.injectEndpoints({
 export const {
   useCreateCartMutation,
   useGetAllCartsQuery,
-  useDeleteProductMutation,
+  useDeleteCartMutation,
 } = cartApi;

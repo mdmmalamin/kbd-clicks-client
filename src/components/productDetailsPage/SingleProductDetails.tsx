@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { useCreateCartMutation } from "../../redux/features/cart/cartApi";
 import { toast } from "sonner";
 import { FieldValues, useForm } from "react-hook-form";
+import { useState } from "react";
 
 // type TSingleProductDetailsProps = {
 //   id?: string;
@@ -23,6 +24,7 @@ import { FieldValues, useForm } from "react-hook-form";
 // };
 
 const SingleProductDetails = () => {
+  const [count, setCount] = useState(1);
   const { state } = useLocation();
   const {
     _id,
@@ -38,21 +40,20 @@ const SingleProductDetails = () => {
   // console.log(state);
   const [setCart, { data, isError, isSuccess }] = useCreateCartMutation();
 
-  console.log(isError);
+  // console.log(isError);
 
   const createAddToCart = async (data: FieldValues) => {
     const toastId = toast.loading("Add to cart processing...");
 
     try {
-      console.log("data: ", data);
       const cartInfo = {
         productId: _id,
-        quantity: parseInt(data?.quantity) || 1,
+        quantity: count,
       };
 
       console.log("cartInfo:", cartInfo);
 
-      await setCart(JSON.stringify(cartInfo));
+      await setCart(cartInfo);
 
       toast.success(`Cart successfully added.`, {
         id: toastId,
@@ -87,7 +88,7 @@ const SingleProductDetails = () => {
           </div>
 
           <div className="flex gap-6">
-            <Counter quantity={quantity} />
+            <Counter count={count} setCount={setCount} quantity={quantity} />
 
             <ButtonCart quantity={quantity} onClick={createAddToCart} />
           </div>

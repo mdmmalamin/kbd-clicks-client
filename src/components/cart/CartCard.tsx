@@ -2,6 +2,7 @@ import keyboard from "../../assets/images/hero/kbd-6.png";
 import Counter from "../ui/Counter";
 import ITrash from "../../assets/icons/ITrash";
 import { useState } from "react";
+import { useDeleteCartMutation } from "../../redux/features/cart/cartApi";
 
 export type TCartProps = {
   _id?: string;
@@ -11,12 +12,14 @@ export type TCartProps = {
   price?: number;
 };
 
-const CartCard = ({ img, title, price, quantity }: TCartProps) => {
-  console.log(img, title, price);
+const CartCard = ({ _id, img, title, price, quantity }: TCartProps) => {
   const [count, setCount] = useState(quantity);
+  const [deletedCart, { data, isLoading, isError, isSuccess }] =
+    useDeleteCartMutation();
 
-  const total = price.toFixed(2);
-  console.log(total, count);
+  const total = Number(price?.toFixed(2));
+
+  console.log({ data, isLoading, isError, isSuccess });
 
   return (
     <div className="flex justify-between items-center p-6">
@@ -39,7 +42,7 @@ const CartCard = ({ img, title, price, quantity }: TCartProps) => {
 
         <div>${total * count}</div>
 
-        <button>
+        <button onClick={() => deletedCart(_id)}>
           <ITrash />
         </button>
       </div>
