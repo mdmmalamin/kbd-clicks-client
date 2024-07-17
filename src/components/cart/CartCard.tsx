@@ -13,10 +13,10 @@ export type TCartProps = {
 
 const CartCard = ({ img, title, price, quantity }: TCartProps) => {
   console.log(img, title, price);
-  const [count, setCount] = useState(quantity || 1);
+  const [count, setCount] = useState(quantity);
 
-  const total = (price?.toFixed(2));
-  console.log(total)
+  const total = price.toFixed(2);
+  console.log(total, count);
 
   return (
     <div className="flex justify-between items-center p-6">
