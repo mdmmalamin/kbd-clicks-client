@@ -78,7 +78,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       backgroundImage: {
-        "primary-gradient": "linear-gradient(30deg, #000000, #e4e4e7)",
+        "primary-gradient": "linear-gradient(30deg, #00000055, #e4e4e7)",
         "secondary-gradient":
           "linear-gradient(30deg, #000000dd, #616F3922, #000000dd)",
       },

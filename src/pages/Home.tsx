@@ -7,7 +7,7 @@ import TopFeaturedBrandsContainer from "../components/topFeaturedBrand/TopFeatur
 
 const Home = () => {
   return (
-    <div className="space-y-12">
+    <div className="sm:space-y-12 sm:mb-12 md:space-y-24 md:mb-24">
       <HeroContainer />
 
       <ServiceAdvertisementContainer />
