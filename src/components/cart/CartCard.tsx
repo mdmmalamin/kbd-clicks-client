@@ -3,21 +3,20 @@ import Counter from "../ui/Counter";
 import ITrash from "../../assets/icons/ITrash";
 import { useState } from "react";
 import { useDeleteCartMutation } from "../../redux/features/cart/cartApi";
+import { TProductCard } from "../productDashboard/ProductCard";
 
 export type TCartProps = {
   _id?: string;
-  img?: string;
-  title?: string;
-  quantity?: number;
-  price?: number;
+  productId: TProductCard;
+  orderQty?: number;
 };
 
-const CartCard = ({ _id, img, title, price, quantity }: TCartProps) => {
-  const [count, setCount] = useState(quantity);
+const CartCard = ({ _id, productId, orderQty }: TCartProps) => {
+  const [count, setCount] = useState(orderQty!);
   const [deletedCart, { data, isLoading, isError, isSuccess }] =
     useDeleteCartMutation();
 
-  const total = Number(price?.toFixed(2));
+  const total = Number(productId?.price?.toFixed(2));
 
   console.log({ data, isLoading, isError, isSuccess });
 
@@ -27,18 +26,23 @@ const CartCard = ({ _id, img, title, price, quantity }: TCartProps) => {
         <div className="flex items-start gap-6">
           <img
             className="size-20 border-2 border-kbd-accent shadow-lg"
-            src={img || keyboard}
+            src={productId?.img || keyboard}
             alt=""
           />
 
-          {title || "Tomorrow Keycaps"}
+          {productId?.title || "Tomorrow Keycaps"}
         </div>
       </div>
 
       <div className="flex-initial flex items-center gap-12">
-        <div>{`$${price}` || "$124.54"}</div>
+        <div>{`$${productId?.price}` || "$124.54"}</div>
 
-        <Counter count={count} setCount={setCount} />
+        <Counter
+          quantity={productId?.quantity}
+          orderQty={orderQty}
+          count={count!}
+          setCount={setCount}
+        />
 
         <div>${total * count}</div>
 

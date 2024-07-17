@@ -7,7 +7,7 @@ import CartSubTotal from "./CartSubTotal";
 
 const CartContainer = () => {
   const { data: carts } = useGetAllCartsQuery(undefined);
-  console.log(carts?.data);
+  // console.log(carts?.data);
   return (
     <Container className="space-y-12">
       <HeadLine>Shopping cart</HeadLine>
@@ -21,10 +21,8 @@ const CartContainer = () => {
           // console.log(cart?.productId?.img)
           <CartCard
             _id={cart?._id}
-            img={cart?.productId?.img}
-            title={cart?.productId?.title}
-            price={cart?.productId?.price}
-            quantity={cart?.quantity}
+            productId={cart?.productId}
+            orderQty={cart?.orderQty}
             key={cart?._id}
           />
         ))}

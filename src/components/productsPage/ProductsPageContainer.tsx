@@ -39,6 +39,7 @@ const ProductsPageContainer = () => {
             className="py-2.5 px-5 text-sm font-semibold rounded-md bg-slate-200 hover:bg-slate-300 transition duration-300"
             onClick={() => {
               setPriceRange("");
+              // || setSearch("");
             }}
           >
             Clear

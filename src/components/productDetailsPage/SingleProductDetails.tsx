@@ -3,25 +3,13 @@ import IFiveStar from "../../assets/icons/IFiveStar";
 import ButtonCart from "../ui/ButtonCart";
 import Counter from "../ui/Counter";
 import { useLocation } from "react-router-dom";
-import { useCreateCartMutation } from "../../redux/features/cart/cartApi";
+import {
+  useCreateCartMutation,
+  useGetAllCartsQuery,
+} from "../../redux/features/cart/cartApi";
 import { toast } from "sonner";
-import { FieldValues, useForm } from "react-hook-form";
 import { useState } from "react";
-
-// type TSingleProductDetailsProps = {
-//   id?: string;
-//   img?: string;
-//   title?: string;
-//   brand?: string;
-//   quantity?: number;
-//   unit?: string;
-//   price?: number;
-//   currency?: string;
-//   rating?: number;
-//   description?: string;
-//   stock?: string;
-//   status?: string;
-// };
+import { TCartProps } from "../cart/CartCard";
 
 const SingleProductDetails = () => {
   const [count, setCount] = useState(1);
@@ -37,28 +25,34 @@ const SingleProductDetails = () => {
     rating,
     description,
   } = state;
-  // console.log(state);
-  const [setCart, { data, isError, isSuccess }] = useCreateCartMutation();
+  const { data: allCarts } = useGetAllCartsQuery(undefined);
+  const [setCart] = useCreateCartMutation();
 
-  // console.log(isError);
+  const isAlreadyAdded = allCarts?.data?.find(
+    (cart: TCartProps) => cart?.productId?._id === _id
+  );
 
-  const createAddToCart = async (data: FieldValues) => {
+  const createAddToCart = async () => {
     const toastId = toast.loading("Add to cart processing...");
 
     try {
       const cartInfo = {
         productId: _id,
-        quantity: count,
+        orderQty: count,
       };
 
-      console.log("cartInfo:", cartInfo);
-
-      await setCart(cartInfo);
-
-      toast.success(`Cart successfully added.`, {
-        id: toastId,
-        duration: 3000,
-      });
+      if (!isAlreadyAdded) {
+        await setCart(cartInfo);
+        toast.success("Cart successfully added.", {
+          id: toastId,
+          duration: 2500,
+        });
+      } else {
+        toast.info(`${title} is already added! CHECKED the cart.`, {
+          id: toastId,
+          duration: 2000,
+        });
+      }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong", { id: toastId, duration: 3000 });

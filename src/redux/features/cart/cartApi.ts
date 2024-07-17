@@ -12,6 +12,7 @@ const cartApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     getAllCarts: builder.query({
       query: () => {
         const params = new URLSearchParams();
@@ -19,9 +20,19 @@ const cartApi = baseApi.injectEndpoints({
         params.append("isDeleted", "false");
 
         return {
-          url: `/carts?isDeleted=false`,
+          url: `/carts`,
           method: "GET",
           params: params,
+        };
+      },
+    }),
+
+    getOneCart: builder.query({
+      query: (id) => {
+        return {
+          url: `/carts`,
+          method: "GET",
+          params: id,
         };
       },
     }),
@@ -38,5 +49,6 @@ const cartApi = baseApi.injectEndpoints({
 export const {
   useCreateCartMutation,
   useGetAllCartsQuery,
+  useGetOneCartQuery,
   useDeleteCartMutation,
 } = cartApi;

@@ -17,7 +17,7 @@ const SearchProduct = ({ setSearch }: TStateProps) => {
     >
       <Search
         register={{
-          ...register("searchTerm", { required: true, maxLength: 100 }),
+          ...register("searchTerm", { maxLength: 100 }),
         }}
       />
       <button type="submit" className="absolute left-1 top-1/5">

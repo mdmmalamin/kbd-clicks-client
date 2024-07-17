@@ -8,6 +8,7 @@ export type TProductCard = {
   title?: string;
   price?: number;
   brand?: string;
+  quantity?: number;
 };
 
 const ProductCard = ({ _id, img, title, price, brand }: TProductCard) => {
