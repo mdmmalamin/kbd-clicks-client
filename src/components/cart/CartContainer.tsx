@@ -1,10 +1,13 @@
+import { useGetAllCartsQuery } from "../../redux/features/cart/cartApi";
 import Container from "../ui/Container";
 import HeadLine from "../ui/HeadLine";
-import CartCard from "./CartCard";
+import CartCard, { TCartProps } from "./CartCard";
 import CartCardHeader from "./CartCardHeader";
 import CartSubTotal from "./CartSubTotal";
 
 const CartContainer = () => {
+  const { data: carts } = useGetAllCartsQuery(undefined);
+  console.log(carts?.data);
   return (
     <Container className="space-y-12">
       <HeadLine>Shopping cart</HeadLine>
@@ -14,8 +17,16 @@ const CartContainer = () => {
       <section className="divide-y divide-dashed">
         <CartCardHeader />
 
-        <CartCard />
-        <CartCard />
+        {carts?.data?.map((cart: TCartProps) => (
+          // console.log(cart?.productId?.img)
+          <CartCard
+            img={cart?.productId?.img}
+            title={cart?.productId?.title}
+            price={cart?.productId?.price}
+            quantity={cart?.quantity}
+            key={cart?._id}
+          />
+        ))}
       </section>
 
       <hr />

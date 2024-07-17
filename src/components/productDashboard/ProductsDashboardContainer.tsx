@@ -15,13 +15,13 @@ import ProductCard from "./ProductCard";
 import ProductDeleteItems from "./ProductDeleteItems";
 
 const ProductsDashboardContainer = () => {
-  const { data: products } = useGetProductsQuery(undefined);
+  const { data: products } = useGetProductsQuery({});
   console.log(products);
 
   return (
     <Container>
       <HeadLine className="my-12">
-        KBD Clicks - Products Dashboard Page
+        KBD Clicks - Products Dashboard
       </HeadLine>
 
       <section className="flex justify-between items-center">

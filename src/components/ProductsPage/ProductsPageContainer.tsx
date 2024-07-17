@@ -8,6 +8,7 @@ import SearchProduct from "./SearchProduct";
 import FilterProduct from "./FilterProduct";
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
 import { useState } from "react";
+import scrollToTop from "../ScrollToTop";
 
 const ProductsPageContainer = () => {
   const [priceRange, setPriceRange] = useState("");
@@ -46,18 +47,16 @@ const ProductsPageContainer = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-0 justify-between items-center">
-        {products?.data?.map(
-          (product: TFeaturedCardProps) =>
-            !product?.isDeleted && (
-              <Link
-                to={`/product-details/${product?._id}`}
-                state={product}
-                key={product?._id}
-              >
-                <FeaturedCard {...product} />
-              </Link>
-            )
-        )}
+        {products?.data?.map((product: TFeaturedCardProps) => (
+          <Link
+            to={`/product-details/${product?._id}`}
+            state={product}
+            key={product?._id}
+            onClick={scrollToTop}
+          >
+            <FeaturedCard {...product} />
+          </Link>
+        ))}
       </div>
     </Container>
   );

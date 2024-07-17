@@ -3,7 +3,7 @@ const CartCardHeader = () => {
     <div className="flex justify-between items-center p-6">
       <div className="flex-auto">Product</div>
 
-      <div className="flex-initial flex items-center gap-12">
+      <div className="flex-initial flex items-center gap-20">
         <div>Price</div>
 
         <div>Quantity</div>

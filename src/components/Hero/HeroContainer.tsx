@@ -3,6 +3,7 @@ import Container from "../ui/Container";
 
 import bg from "../../assets/images/hero/broken-kbd.jpg";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 const HeroContainer = () => {
   return (
@@ -15,9 +16,11 @@ const HeroContainer = () => {
           {/* <HeroImages /> */}
           <div className="flex flex-col gap-10 items-center justify-center bg-secondary-gradient w-full h-full rounded-2xl">
             <h1 className="text-7xl font-extrabold text-white">Theseus75</h1>
-            <Button className="bg-kbd-accent text-2xl text-kbd-primary hover:text-white hover:bg-kbd-tertiary font-bold rounded-full p-6 transition duration-300">
-              Order Now
-            </Button>
+            <Link to="/products">
+              <Button className="bg-kbd-accent text-2xl text-kbd-primary hover:text-white hover:bg-kbd-tertiary font-bold rounded-full p-6 transition duration-300">
+                Order Now
+              </Button>
+            </Link>
           </div>
         </div>
       </Container>

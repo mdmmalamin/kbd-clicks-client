@@ -3,10 +3,10 @@ import Container from "../ui/Container";
 import HeadLine from "../ui/HeadLine";
 import FeaturedCard, { TFeaturedCardProps } from "./FeaturedCard";
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
+import scrollToTop from "../ScrollToTop";
 
 const FeaturedProductsContainer = () => {
-  const { data: products } = useGetProductsQuery('');
-  console.log(products?.data);
+  const { data: products } = useGetProductsQuery({});
   return (
     <Container className="space-y-12">
       <HeadLine>Featured Products Container</HeadLine>
@@ -17,6 +17,7 @@ const FeaturedProductsContainer = () => {
             to={`/product-details/${product?._id}`}
             state={product}
             key={product?._id}
+            onClick={scrollToTop}
           >
             <FeaturedCard {...product} />
           </Link>
@@ -27,6 +28,7 @@ const FeaturedProductsContainer = () => {
         <Link
           to="/products"
           className="py-3 px-12 rounded-full bg-kbd-accent hover:bg-kbd-tertiary text-primary hover:text-white font-semibold transition duration-300"
+          onClick={scrollToTop}
         >
           See More
         </Link>

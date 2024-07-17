@@ -3,6 +3,9 @@ import IFiveStar from "../../assets/icons/IFiveStar";
 import ButtonCart from "../ui/ButtonCart";
 import Counter from "../ui/Counter";
 import { useLocation } from "react-router-dom";
+import { useCreateCartMutation } from "../../redux/features/cart/cartApi";
+import { toast } from "sonner";
+import { FieldValues, useForm } from "react-hook-form";
 
 // type TSingleProductDetailsProps = {
 //   id?: string;
@@ -21,9 +24,46 @@ import { useLocation } from "react-router-dom";
 
 const SingleProductDetails = () => {
   const { state } = useLocation();
-  const { img, title, brand, quantity, currency, price, rating, description } =
-    state;
-  console.log(state);
+  const {
+    _id,
+    img,
+    title,
+    brand,
+    quantity,
+    currency,
+    price,
+    rating,
+    description,
+  } = state;
+  // console.log(state);
+  const [setCart, { data, isError, isSuccess }] = useCreateCartMutation();
+
+  console.log(isError);
+
+  const createAddToCart = async (data: FieldValues) => {
+    const toastId = toast.loading("Add to cart processing...");
+
+    try {
+      console.log("data: ", data);
+      const cartInfo = {
+        productId: _id,
+        quantity: parseInt(data?.quantity) || 1,
+      };
+
+      console.log("cartInfo:", cartInfo);
+
+      await setCart(JSON.stringify(cartInfo));
+
+      toast.success(`Cart successfully added.`, {
+        id: toastId,
+        duration: 3000,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong", { id: toastId, duration: 3000 });
+    }
+  };
+
   return (
     <section className="flex justify-between items-start my-12">
       <div className="flex-1">
@@ -47,9 +87,9 @@ const SingleProductDetails = () => {
           </div>
 
           <div className="flex gap-6">
-            <Counter />
+            <Counter quantity={quantity} />
 
-            <ButtonCart quantity={quantity!} />
+            <ButtonCart quantity={quantity} onClick={createAddToCart} />
           </div>
 
           <div>

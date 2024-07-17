@@ -1,17 +1,23 @@
 import keyboard from "../../assets/images/hero/kbd-6.png";
 import Counter from "../ui/Counter";
 import ITrash from "../../assets/icons/ITrash";
+import { useState } from "react";
 
-type TCartProps = {
-  id?: string;
+export type TCartProps = {
+  _id?: string;
   img?: string;
   title?: string;
   quantity?: number;
   price?: number;
 };
 
-const CartCard = ({ img, title, price }: TCartProps) => {
-  const total = 1;
+const CartCard = ({ img, title, price, quantity }: TCartProps) => {
+  console.log(img, title, price);
+  const [count, setCount] = useState(quantity || 1);
+
+  const total = (price?.toFixed(2));
+  console.log(total)
+
   return (
     <div className="flex justify-between items-center p-6">
       <div className="flex-auto">
@@ -29,9 +35,9 @@ const CartCard = ({ img, title, price }: TCartProps) => {
       <div className="flex-initial flex items-center gap-12">
         <div>{`$${price}` || "$124.54"}</div>
 
-        <Counter />
+        <Counter count={count} setCount={setCount} />
 
-        <div>{`$${total}` || "$124.54"}</div>
+        <div>${total * count}</div>
 
         <button>
           <ITrash />
