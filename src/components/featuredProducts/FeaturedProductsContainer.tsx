@@ -11,7 +11,7 @@ const FeaturedProductsContainer = () => {
     <Container className="space-y-12">
       <HeadLine>Featured Products Container</HeadLine>
 
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-0 justify-between items-center">
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-12 justify-between items-center">
         {products?.data?.slice(0, 6).map((product: TFeaturedCardProps) => (
           <Link
             to={`/product-details/${product?._id}`}

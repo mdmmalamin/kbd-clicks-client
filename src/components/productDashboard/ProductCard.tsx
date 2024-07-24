@@ -3,12 +3,12 @@ import ProductDeleteModal from "./ProductDeleteModal";
 import ProductUpdateModal from "./ProductUpdateModal";
 
 export type TProductCard = {
-  _id?: string;
-  img?: string;
-  title?: string;
-  price?: number;
-  brand?: string;
-  quantity?: number;
+  _id: string;
+  img: string;
+  title: string;
+  price: number;
+  brand: string;
+  quantity: number;
 };
 
 const ProductCard = ({ _id, img, title, price, brand }: TProductCard) => {

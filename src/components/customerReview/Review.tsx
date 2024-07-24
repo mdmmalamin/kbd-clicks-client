@@ -10,7 +10,7 @@ type TReviewProps = {
 const Review = ({ name, designation, description, src }: TReviewProps) => {
   return (
     <div className="p-4 min-w-full md:min-w-[50%]">
-      <div className="h-full p-8 rounded shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
+      <div className="h-full p-8 rounded shadow-[0px_4px_12px_rgba(0,0,0,0.1)] bg-white">
         <IQuotation />
         <p className="leading-relaxed mb-6 text-gray-500">{description}</p>
         <p className="inline-flex items-center">

@@ -12,7 +12,7 @@ const Btn = ({ children, onClick, className, type }: TBtnProps) => {
     <button
       type={type}
       onClick={onClick}
-      className={`flex-auto px-7 py-3.5 rounded-md bg-kbd-accent hover:bg-rose-800 text-kbd-primary hover:text-white font-semibold transition duration-300 ${className}`}
+      className={`flex-auto px-7 py-3.5 rounded-md bg-kbd-accent hover:bg-orange-700 text-kbd-primary hover:text-white font-semibold transition duration-300 ${className}`}
     >
       {children}
     </button>

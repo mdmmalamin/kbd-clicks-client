@@ -6,7 +6,7 @@ const IPlus = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="size-14 p-4 hover:bg-slate-200 transition duration-300"
+      className="size-14 p-4 hover:bg-slate-300 transition duration-300"
     >
       <path
         strokeLinecap="round"

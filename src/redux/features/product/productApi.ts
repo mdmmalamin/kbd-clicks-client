@@ -8,6 +8,7 @@ const productApi = baseApi.injectEndpoints({
         method: "POST",
         body: productInfo,
       }),
+      invalidatesTags: ["product,cart"],
     }),
     getProducts: builder.query({
       query: (filter) => {
@@ -26,18 +27,21 @@ const productApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ["product,cart"],
     }),
     getProductsByQuantity: builder.query({
       query: () => ({
         url: "/products?fields=quantity",
         method: "GET",
       }),
+      providesTags: ["product,cart"],
     }),
     deleteProduct: builder.mutation({
       query: (id) => ({
         url: `/products/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["product,cart"],
     }),
   }),
 });

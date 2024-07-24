@@ -5,19 +5,44 @@ const NavbarMenu = () => {
     <div>
       <ul className="flex items-center justify-center gap-2.5 text-lg font-semibold">
         <li>
-          <NavLink className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300" to="/home">Home</NavLink>
+          <NavLink
+            className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300"
+            to="/home"
+          >
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300" to="/products">Products</NavLink>
+          <NavLink
+            className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300"
+            to="/products"
+          >
+            Products
+          </NavLink>
         </li>
         <li>
-          <NavLink className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300" to="/about-us">About</NavLink>
+          <NavLink
+            className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300"
+            to="/about-us"
+          >
+            About
+          </NavLink>
         </li>
         <li>
-          <NavLink className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300" to="/contact-us">Contact</NavLink>
+          <NavLink
+            className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300"
+            to="/contact-us"
+          >
+            Contact
+          </NavLink>
         </li>
         <li>
-          <NavLink className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300" to="/products-dashboard">Dashboard</NavLink>
+          <NavLink
+            className="py-2 px-3 text-white hover:text-kbd-accent transition duration-300"
+            to="/products-dashboard"
+          >
+            Dashboard
+          </NavLink>
         </li>
       </ul>
     </div>

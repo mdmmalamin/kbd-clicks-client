@@ -1,29 +1,25 @@
 import Search from "../form/Search";
 import ButtonKbd from "../ui/ButtonKbd";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 
 type TStateProps = {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const SearchProduct = ({ setSearch }: TStateProps) => {
-  const { register, handleSubmit } = useForm();
-
-  const handleSearch = (data: FieldValues) => setSearch(data?.searchTerm);
+  const handleSearching = (data: FieldValues) => {
+    setTimeout(() => {
+      console.log(data.target.value);
+      setSearch(data.target.value);
+    }, 1200);
+  };
   return (
-    <form
-      className="flex items-center gap-4 relative"
-      onSubmit={handleSubmit(handleSearch)}
-    >
-      <Search
-        register={{
-          ...register("searchTerm", { maxLength: 100 }),
-        }}
-      />
+    <div className="flex items-center gap-4 relative">
+      <Search onChange={handleSearching} />
       <button type="submit" className="absolute left-1 top-1/5">
         <ButtonKbd />
       </button>
-    </form>
+    </div>
   );
 };
 

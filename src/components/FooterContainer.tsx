@@ -105,7 +105,7 @@ const FooterContainer = () => {
         <div className="border border-neutral/20"></div>
 
         <div>
-          <section className="max-w-[1170px] mx-auto px-5 md:px-0 flex flex-col-reverse sm:flex-row gap-5 justify-between items-center my-5">
+          <section className="max-w-[1170px] mx-auto px-5 md:px-0 flex flex-col-reverse sm:flex-row gap-5 justify-between items-center py-2.5">
             <p>&#169; 2024 , All rights reserved.</p>
             <div className="md:flex gap-3 items-center hidden">
               <Link

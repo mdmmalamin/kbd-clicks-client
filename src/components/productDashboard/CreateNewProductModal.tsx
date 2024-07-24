@@ -14,10 +14,11 @@ import IPlus from "../../assets/icons/IPlus";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useCreateProductMutation } from "../../redux/features/product/productApi";
+import { useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
 
 const CreateNewProductModal = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [setProduct, { data, isLoading, isError, isSuccess }] =
     useCreateProductMutation();
   // const navigate = useNavigate();
@@ -48,12 +49,37 @@ const CreateNewProductModal = () => {
         duration: 3000,
       });
 
-      // navigate("/products");
+      reset();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong", { id: toastId, duration: 3000 });
     }
   };
+
+  const formNotEmpty = () => {
+    return true;
+  };
+
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (formNotEmpty()) {
+        e.preventDefault();
+
+        e.returnValue = "";
+
+        return toast.warning("Changes you made may not be saved.", {
+          duration: 3000,
+        });
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <Dialog>
       <DialogTrigger asChild>

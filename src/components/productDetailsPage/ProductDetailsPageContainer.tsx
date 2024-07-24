@@ -12,7 +12,7 @@ import HeadLine from "../ui/HeadLine";
 const ProductDetailsPageContainer = () => {
   const { data: products } = useGetProductsQuery({});
 
-  const dataLen = products?.data?.length;
+  const dataLen = products?.data?.length-2;
 
   const start = getRandomNumber(dataLen);
   return (
@@ -22,7 +22,7 @@ const ProductDetailsPageContainer = () => {
       <hr className="my-24" />
 
       <HeadLine className="!text-left my-12">Recommended</HeadLine>
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-0 justify-between items-center">
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 justify-between items-center my-12">
         {products?.data
           ?.slice(start, dataLen)
           .map((product: TFeaturedCardProps) => (
@@ -31,6 +31,7 @@ const ProductDetailsPageContainer = () => {
               state={product}
               key={product?._id}
               onClick={scrollToTop}
+              className="scale-95"
             >
               <FeaturedCard {...product} />
             </Link>

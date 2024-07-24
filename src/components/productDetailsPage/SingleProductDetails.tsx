@@ -43,9 +43,10 @@ const SingleProductDetails = () => {
 
       if (!isAlreadyAdded) {
         await setCart(cartInfo);
+
         toast.success("Cart successfully added.", {
           id: toastId,
-          duration: 2500,
+          duration: 2000,
         });
       } else {
         toast.info(`${title} is already added! CHECKED the cart.`, {
@@ -55,26 +56,28 @@ const SingleProductDetails = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong", { id: toastId, duration: 3000 });
+      toast.error("Something went wrong", { id: toastId, duration: 2000 });
     }
   };
 
   return (
-    <section className="flex justify-between items-start my-12">
+    <section className="flex flex-col md:flex-row justify-between items-start md:my-12">
       <div className="flex-1">
-        <img
-          className="h-full w-[80%] mx-auto border-2 border-kbd-accent shadow-lg"
-          src={img || keyboard}
-          alt=""
-        />
+        <div className="max-w-[31rem] max-h-[31rem] mx-auto">
+          <img
+            className="h-full w-full bg-white p-5 mx-auto border-2 border-kbd-accent shadow-lg"
+            src={img || keyboard}
+            alt=""
+          />
+        </div>
       </div>
 
-      <div className="flex-1">
-        <div className="h-full w-[80%] mx-auto space-y-6">
+      <div className="flex-1 bg-white p-5">
+        <div className="max-w-[31rem] max-h-full mx-auto space-y-6">
           <h1 className="text-5xl font-thin">{title || "Testing Title"}</h1>
 
           <div className="border rounded-2xl py-6 px-4 relative">
-            <p className="absolute -top-4 text-lg bg-slate-50 px-2">Price</p>
+            <p className="absolute -top-4 text-lg bg-white px-2">Price</p>
             <p className="px-2">
               <span>{currency || "$"}</span>
               {price || 124.54}
@@ -82,7 +85,13 @@ const SingleProductDetails = () => {
           </div>
 
           <div className="flex gap-6">
-            <Counter count={count} setCount={setCount} quantity={quantity} />
+            <Counter
+              // _id={_id}
+              // total={price * count}
+              count={count}
+              setCount={setCount}
+              quantity={quantity}
+            />
 
             <ButtonCart quantity={quantity} onClick={createAddToCart} />
           </div>

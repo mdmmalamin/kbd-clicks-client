@@ -22,7 +22,7 @@ const ProductsPageContainer = () => {
   // isLoading && <p>Loading...</p>;
   // isError && <p>Something is wrong...</p>;
   return (
-    <Container className="space-y-12">
+    <Container className="space-y-12 my-12">
       <HeadLine className="!text-left">All</HeadLine>
 
       <div className="flex justify-between items-center">
@@ -47,7 +47,7 @@ const ProductsPageContainer = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-0 justify-between items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12  justify-between items-center">
         {products?.data?.map((product: TFeaturedCardProps) => (
           <Link
             to={`/product-details/${product?._id}`}

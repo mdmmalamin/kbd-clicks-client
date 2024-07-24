@@ -53,10 +53,10 @@ module.exports = {
         },
 
         // Custom Color
-        "kbd-primary": "#000000",
-        "kbd-secondary": "#3E432E",
-        "kbd-tertiary": "#616F39",
-        "kbd-accent": "#A7D129",
+        "kbd-primary": "#001F3F",
+        "kbd-secondary": "#083358",
+        "kbd-tertiary": "#0DA574",
+        "kbd-accent": "#FFD717",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -72,10 +72,16 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        bg: {
+          "0%": { "background-position": "0%, 50%" },
+          "50%": { "background-position": "100%, 100%" },
+          "100%": { "background-position": "0%, 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "bg-animation": "bg 12s ease infinite",
       },
       backgroundImage: {
         "primary-gradient": "linear-gradient(30deg, #00000055, #e4e4e7)",

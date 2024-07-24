@@ -1,5 +1,5 @@
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
-import { TProduct } from "../../redux/features/product/productSlice";
+
 import Container from "../ui/Container";
 import HeadLine from "../ui/HeadLine";
 import {
@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "../ui/table";
 import CreateNewProductModal from "./CreateNewProductModal";
-import ProductCard from "./ProductCard";
+import ProductCard, { TProductCard } from "./ProductCard";
 import ProductDeleteItems from "./ProductDeleteItems";
 
 const ProductsDashboardContainer = () => {
@@ -19,10 +19,8 @@ const ProductsDashboardContainer = () => {
   console.log(products);
 
   return (
-    <Container>
-      <HeadLine className="my-12">
-        KBD Clicks - Products Dashboard
-      </HeadLine>
+    <Container className="my-12">
+      <HeadLine className="my-12">KBD Clicks - Products Dashboard</HeadLine>
 
       <section className="flex justify-between items-center">
         <CreateNewProductModal />
@@ -42,7 +40,7 @@ const ProductsDashboardContainer = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {products?.data?.map((product: TProduct) => (
+            {products?.data?.map((product: TProductCard) => (
               <ProductCard {...product} key={product?._id} />
             ))}
           </TableBody>

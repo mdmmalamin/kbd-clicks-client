@@ -3,32 +3,27 @@ import keyboard from "../../assets/images/hero/inspact-keyboard.jpg";
 import { Button } from "../ui/button";
 
 export type TFeaturedCardProps = {
-  _id?: string;
-  title?: string;
-  brand?: string;
-  rating?: number;
-  quantity?: number;
-  price?: number;
-  currency?: string;
-  img?: string;
-  status?: "in-stock" | "out-of-stock";
-  isDeleted?: boolean;
+  _id: string;
+  title: string;
+  brand: string;
+  rating: number;
+  quantity: number;
+  price: number;
+  img: string;
+  status: "in-stock" | "out-of-stock";
+  isDeleted: boolean;
 };
 
 const FeaturedCard = ({
-  // _id,
   title,
   brand,
   rating,
   quantity,
   price,
-  currency,
   img,
-}: // status,
-TFeaturedCardProps) => {
-  // console.log(_id, title, brand, rating, quantity, price, currency, img);
+}: TFeaturedCardProps) => {
   return (
-    <div className="w-[360px] h-full p-5 mx-auto hover:scale-105 transition duration-300 rounded-2xl hover:bg-kbd-accent/20">
+    <div className="w-[360px] h-full p-5 mx-auto hover:scale-105 transition duration-300 rounded-2xl bg-white hover:bg-kbd-accent/20">
       <div className="size-80 mx-auto rounded-[17px] border-2 border-kbd-accent shadow-lg">
         <img
           className="h-full w-full mx-auto rounded-2xl border-2 border-kbd-accent shadow-lg"
@@ -46,10 +41,7 @@ TFeaturedCardProps) => {
         </div>
 
         <div className="flex justify-between items-center font-semibold">
-          <p>
-            {currency || "$"}
-            {price || 412.49}
-          </p>
+          <p>${price || 412.49}</p>
           {quantity && (
             <p className="text-xs">
               Just{" "}

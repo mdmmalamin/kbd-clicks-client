@@ -1,25 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type TCart = {
-  _id?: string;
-  quantity: number;
+  _id: string;
+  total: number;
 };
 
-const initialState = {
-  quantity: null,
+type TInitialState = {
+  orders: TCart[];
+};
+
+const initialState: TInitialState = {
+  orders: [],
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setCart: (state, action) => {
-      console.log(state, action.payload);
-      state = action.payload;
+    setCartPrice: (state, action: PayloadAction<TCart>) => {
+      const isExist = state.orders.find(
+        (order) => order._id === action.payload._id
+      );
+
+      // console.log(state.orders);
+      // isExist!.total = action.payload.total;
+
+      !isExist && state.orders.push({ ...action.payload });
+      // console.log(state.orders);
+    },
+    removeCartPrice: (state, action: PayloadAction<TCart>) => {
+      state.orders.push({ ...action.payload });
     },
   },
 });
 
-export const { setCart } = cartSlice.actions;
+export const { setCartPrice, removeCartPrice } = cartSlice.actions;
 
 export default cartSlice.reducer;

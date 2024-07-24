@@ -77,4 +77,14 @@
   input[type="number"] {
     -moz-appearance: textfield; /* Firefox */
   }
+
+  /* p {
+    @apply text-slate-700
+  } */
+}
+
+@layer base {
+  .clip-polygon {
+    clip-path: polygon(13%, 22%, 11%, 59%, 54%, 76%, 81%, 48%, 30, 18%);
+  }
 }
