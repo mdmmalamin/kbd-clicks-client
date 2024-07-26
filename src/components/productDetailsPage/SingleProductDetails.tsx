@@ -74,13 +74,13 @@ const SingleProductDetails = () => {
 
       <div className="flex-1 bg-white p-5">
         <div className="max-w-[31rem] max-h-full mx-auto space-y-6">
-          <h1 className="text-5xl font-thin">{title || "Testing Title"}</h1>
+          <h1 className="text-5xl font-thin">{title}</h1>
 
           <div className="border rounded-2xl py-6 px-4 relative">
             <p className="absolute -top-4 text-lg bg-white px-2">Price</p>
             <p className="px-2">
               <span>{currency || "$"}</span>
-              {price || 124.54}
+              {price}
             </p>
           </div>
 
@@ -97,17 +97,17 @@ const SingleProductDetails = () => {
           </div>
 
           <div>
-            <p>Brand: {brand || "Demo"}</p>
+            <p>Brand: {brand}</p>
           </div>
 
           <div className="flex justify-between items-center border rounded-md px-4 py-2">
             <p>
-              Just <span className="">{quantity || "2"}</span> remaining
+              Just <span className="">{quantity}</span> remaining
             </p>
-            <div>{(rating || 1) && <IFiveStar rating={rating || 1} />}</div>
+            <div>{rating && <IFiveStar rating={rating} />}</div>
           </div>
 
-          <div>{description || "Test Demo Description"}</div>
+          <div>{description}</div>
         </div>
       </div>
     </section>

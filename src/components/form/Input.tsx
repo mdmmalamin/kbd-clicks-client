@@ -7,6 +7,7 @@ type TInputProps = {
   className?: string;
   id?: string;
   name?: string;
+  defaultValue?: string | number;
 };
 
 const Input = ({
@@ -16,6 +17,7 @@ const Input = ({
   className,
   id,
   name,
+  defaultValue,
 }: TInputProps) => {
   return (
     <input
@@ -24,6 +26,7 @@ const Input = ({
       placeholder={placeholder || "Placeholder"}
       id={id}
       name={name}
+      defaultValue={defaultValue}
       {...register}
     />
   );

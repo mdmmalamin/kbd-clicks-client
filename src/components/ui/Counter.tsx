@@ -37,7 +37,11 @@ const Counter = ({ _id, total, quantity, count, setCount }: TCounter) => {
         <IMinus />
       </button>
       <p className="flex-auto w-8 text-lg font-semibold text-center">{count}</p>
-      <button className="flex-1" onClick={() => countIncrement(_id!, total!)}>
+      <button
+        className="flex-1"
+        onClick={() => countIncrement(_id!, total!)}
+        disabled={quantity === 0}
+      >
         <IPlus />
       </button>
     </div>

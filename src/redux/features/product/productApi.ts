@@ -10,6 +10,7 @@ const productApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["product,cart"],
     }),
+
     getProducts: builder.query({
       query: (filter) => {
         const { priceRange, search } = filter;
@@ -29,6 +30,7 @@ const productApi = baseApi.injectEndpoints({
       },
       providesTags: ["product,cart"],
     }),
+
     getProductsByQuantity: builder.query({
       query: () => ({
         url: "/products?fields=quantity",
@@ -36,6 +38,28 @@ const productApi = baseApi.injectEndpoints({
       }),
       providesTags: ["product,cart"],
     }),
+
+    getSingleProduct: builder.query({
+      query: (id) => ({
+        url: `/products/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["product,cart"],
+    }),
+
+    updateProduct: builder.mutation({
+      query: (updateInfo) => {
+        const { id, payload } = updateInfo;
+        console.log(updateInfo);
+        return {
+          url: `/products/${id}`,
+          method: "PATCH",
+          body: payload,
+        };
+      },
+      invalidatesTags: ["product,cart"],
+    }),
+
     deleteProduct: builder.mutation({
       query: (id) => ({
         url: `/products/${id}`,
@@ -50,5 +74,7 @@ export const {
   useCreateProductMutation,
   useGetProductsQuery,
   useGetProductsByQuantityQuery,
+  useGetSingleProductQuery,
+  useUpdateProductMutation,
   useDeleteProductMutation,
 } = productApi;

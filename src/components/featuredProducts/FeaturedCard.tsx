@@ -35,27 +35,25 @@ const FeaturedCard = ({
       <div className="w-80 mx-auto pt-5 space-y-1">
         <div className="flex justify-between text-xs">
           <p className="border bg-kbd-tertiary text-white font-semibold px-5 py-0.5 rounded-full">
-            {brand || "Demo"}
+            {brand}
           </p>
-          <>{(rating || 1) && <IFiveStar rating={rating || 4} />}</>
+          <>{rating && <IFiveStar rating={rating} />}</>
         </div>
 
         <div className="flex justify-between items-center font-semibold">
-          <p>${price || 412.49}</p>
-          {quantity && (
+          <p>${price}</p>
+          {quantity >= 0 && (
             <p className="text-xs">
               Just{" "}
               <span className="text-base font-semibold text-kbd-tertiary">
-                {quantity || 1}
+                {quantity}
               </span>{" "}
               remaining
             </p>
           )}
         </div>
         <div>
-          <p className="line-clamp-1 font-semibold normal-case">
-            {title || "Testing Title"}
-          </p>
+          <p className="line-clamp-1 font-semibold normal-case">{title}</p>
 
           <Button className="w-full mt-2 bg-kbd-accent hover:bg-kbd-tertiary text-primary hover:text-white font-semibold transition duration-300">
             See Details Button

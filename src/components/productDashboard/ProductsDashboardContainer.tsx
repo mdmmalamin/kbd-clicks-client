@@ -12,11 +12,9 @@ import {
 } from "../ui/table";
 import CreateNewProductModal from "./CreateNewProductModal";
 import ProductCard, { TProductCard } from "./ProductCard";
-import ProductDeleteItems from "./ProductDeleteItems";
 
 const ProductsDashboardContainer = () => {
   const { data: products } = useGetProductsQuery({});
-  console.log(products);
 
   return (
     <Container className="my-12">
@@ -24,7 +22,6 @@ const ProductsDashboardContainer = () => {
 
       <section className="flex justify-between items-center">
         <CreateNewProductModal />
-        <ProductDeleteItems />
       </section>
 
       <section>

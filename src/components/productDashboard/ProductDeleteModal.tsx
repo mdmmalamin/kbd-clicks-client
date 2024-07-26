@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import ITrash from "../../assets/icons/ITrash";
 import { useDeleteProductMutation } from "../../redux/features/product/productApi";
 import { Button } from "../ui/button";
@@ -13,10 +14,16 @@ import {
 } from "../ui/dialog";
 
 const ProductDeleteModal = ({ id }: { id?: string }) => {
-  const [deletedProduct, { data, isLoading, isError, isSuccess }] =
-    useDeleteProductMutation();
+  const [deletedProduct] = useDeleteProductMutation();
 
-  console.log({ data, isLoading, isError, isSuccess });
+  const removedProduct = async () => {
+    try {
+      await deletedProduct(id);
+      toast.success("Product successfully deleted.", { duration: 2500 });
+    } catch (error) {
+      toast.success("Something went wrong", { duration: 2500 });
+    }
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -37,7 +44,7 @@ const ProductDeleteModal = ({ id }: { id?: string }) => {
         <DialogFooter>
           <DialogClose asChild>
             <Button
-              onClick={() => deletedProduct(id)}
+              onClick={removedProduct}
               className="bg-red-500 hover:bg-red-700"
               type="submit"
             >

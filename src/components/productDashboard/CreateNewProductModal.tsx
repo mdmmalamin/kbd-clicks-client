@@ -1,6 +1,7 @@
 import { Button } from "../ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -14,16 +15,10 @@ import IPlus from "../../assets/icons/IPlus";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useCreateProductMutation } from "../../redux/features/product/productApi";
-import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
 
 const CreateNewProductModal = () => {
   const { register, handleSubmit, reset } = useForm();
-  const [setProduct, { data, isLoading, isError, isSuccess }] =
-    useCreateProductMutation();
-  // const navigate = useNavigate();
-
-  console.log({ data, isLoading, isError, isSuccess });
+  const [setProduct, { isLoading }] = useCreateProductMutation();
 
   const createProduct = async (data: FieldValues) => {
     const toastId = toast.loading("New item create processing...");
@@ -40,8 +35,6 @@ const CreateNewProductModal = () => {
         img: data?.img,
       };
 
-      console.log(productInfo);
-
       await setProduct(productInfo);
 
       toast.success("Product create successfully.", {
@@ -51,34 +44,9 @@ const CreateNewProductModal = () => {
 
       reset();
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong", { id: toastId, duration: 3000 });
     }
   };
-
-  const formNotEmpty = () => {
-    return true;
-  };
-
-  useEffect(() => {
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (formNotEmpty()) {
-        e.preventDefault();
-
-        e.returnValue = "";
-
-        return toast.warning("Changes you made may not be saved.", {
-          duration: 3000,
-        });
-      }
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
 
   return (
     <Dialog>
@@ -226,12 +194,15 @@ const CreateNewProductModal = () => {
             </select>
           </div>
           <DialogFooter>
-            <Button
-              className="bg-kbd-accent hover:bg-kbd-tertiary text-kbd-primary hover:text-white"
-              type="submit"
-            >
-              Add product
-            </Button>
+            <DialogClose asChild>
+              <Button
+                className="bg-kbd-accent hover:bg-kbd-tertiary text-kbd-primary hover:text-white"
+                type="submit"
+                disabled={isLoading}
+              >
+                Add product
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </form>
       </DialogContent>
