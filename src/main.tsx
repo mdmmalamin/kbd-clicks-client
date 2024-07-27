@@ -8,10 +8,10 @@ import router from "./routes/routes.tsx";
 import { Toaster } from "sonner";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
-      <Toaster richColors position="top-center"/>
+      <Toaster richColors position="top-center" />
     </Provider>
-  // </React.StrictMode>
+  </React.StrictMode>
 );
